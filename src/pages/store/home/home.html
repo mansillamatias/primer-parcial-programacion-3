@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Store - Catalogo</title>
+  <link rel="stylesheet" href="./../../../global.css">
+  <link rel="stylesheet" href="./home.css">
+</head>
+
+<body>
+
+  <section class="container">
+    <aside class="aside__container">
+      <h2 class="aside__title">Categorias</h2>
+      <ul id="categories__list" class="categories__list">
+        <li><button id="all__products" class="categories__item categories__item--selected">Todos los productos</button>
+        </li>
+      </ul>
+    </aside>
+
+    <main>
+      <input type="text" name="text" id="search__input" placeholder="🔍 Buscar productos...">
+      <section id="conteiner__products" class="products__list">
+        <!-- Aquí se mostrarán los productos -->
+      </section>
+    </main>
+  </section>
+</body>
+
+<script type="module" src="./home.ts"></script>
+
+</html>
