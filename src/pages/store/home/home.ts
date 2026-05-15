@@ -1,20 +1,69 @@
-import { getCategories } from "../../../data/data";
+import { getCategories, PRODUCTS } from "../../../data/data";
 import type { ICategory } from "../../../types/ICategory";
+import type { Product } from "../../../types/Product";
 
 // Referencias a elementos del DOM
 const categoriesList = document.querySelector<HTMLUListElement>("#categories__list");
+const conteinerProducts = document.querySelector<HTMLElement>("#conteiner__products");
 
 // Fragmento para optimizar la inserción de productos
 const fragmentCategories = document.createDocumentFragment();
+const fragmentProducts = document.createDocumentFragment();
+const searchInput = document.querySelector<HTMLInputElement>("#search__input");
+
 
 // Obtener categorías
 const categories = getCategories();
 
-// crear un elemento de categoría
+// Crear un elemento de categoría
 const crateCategoryItem = (category: ICategory): HTMLElement => {
   const li = document.createElement("li");
   li.innerHTML = `<button class="categories__item" >${category.nombre}</button>`;
   return li;
+};
+
+// Crear una tarjeta de producto
+const createProductCard = (product: Product): HTMLElement => {
+  const article = document.createElement("article");
+  article.classList.add("product__card");
+  article.setAttribute("data-id", product.id.toString());
+  article.innerHTML = `
+      <header class="product__header">
+        <img src="${product.imagen}" alt="${product.nombre}">
+      </header>
+      <main class="product__main">
+        <h4>${product.categorias.map((cat) => cat.nombre).join(", ")}</h4>
+        <h3>${product.nombre}</h3>
+        <p>${product.descripcion}</p>
+      </main>
+      <footer class="product__footer">
+        <p>$${product.precio}</p>
+        <button class="add-to-cart">+ Agregar</button>
+      </footer>
+      `;
+  return article;
+}
+
+// Mostrar productos en el contenedor
+const showProducts = (products: Product[]) => {
+  if (conteinerProducts) {
+    conteinerProducts.innerHTML = "";
+    products.forEach((product) => {
+      const article = createProductCard(product);
+      fragmentProducts.appendChild(article);
+    });
+  }
+  if (conteinerProducts) conteinerProducts.appendChild(fragmentProducts);
+};
+
+// Filtrar productos por nombre o categoría
+const filteredProducts = (filter: string): Product[] => {
+  const filtered = PRODUCTS.filter((product) =>
+    product.nombre.toLowerCase().includes(filter) ||
+    product.descripcion.toLowerCase().includes(filter) ||
+    product.categorias.some((cat) => cat.nombre.toLowerCase() === filter.toLowerCase())
+  );
+  return filtered;
 };
 
 // Renderizar categorías
@@ -24,3 +73,14 @@ categories.forEach((category: ICategory) => {
 });
 
 if (categoriesList) categoriesList.appendChild(fragmentCategories);
+
+// Mostrar todos los productos al cargar la página
+showProducts(PRODUCTS);
+
+// Busqueda en tiempo real
+searchInput?.addEventListener("input", (e) => {
+  const target = e.target as HTMLInputElement;
+  const searchProduct = target.value.toLowerCase();
+  const filtered = filteredProducts(searchProduct);
+  showProducts(filtered);
+});
