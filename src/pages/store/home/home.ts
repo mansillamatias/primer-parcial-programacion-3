@@ -84,3 +84,25 @@ searchInput?.addEventListener("input", (e) => {
   const filtered = filteredProducts(searchProduct);
   showProducts(filtered);
 });
+
+// Selección de categoría
+categoriesList?.addEventListener("click", (e) => {
+  e.preventDefault();
+  const target = e.target as HTMLElement;
+
+  // Eliminar seleccion previa
+  categoriesList.querySelector(".categories__item--selected")?.classList.remove("categories__item--selected");
+
+  if (target.classList.contains("categories__item")) {
+    target.classList.add("categories__item--selected");
+    const categoryName = target.textContent?.trim() || "";
+    console.log("Categoría seleccionada:", categoryName);
+
+    if (categoryName === "Todos los productos") {
+      showProducts(PRODUCTS);
+    } else {
+      const categotyProducts = filteredProducts(categoryName);
+      showProducts(categotyProducts);
+    }
+  }
+});
