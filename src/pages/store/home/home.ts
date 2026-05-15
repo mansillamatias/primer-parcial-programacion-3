@@ -2,6 +2,7 @@ import { getCategories, PRODUCTS } from "../../../data/data";
 import type { ICategory } from "../../../types/ICategory";
 import type { Product } from "../../../types/Product";
 import { renderHeader } from "../../../main";
+import { addToCart, totalItemsCart } from "../../../utils/cart";
 
 // Renderizado del header
 renderHeader();
@@ -9,12 +10,12 @@ renderHeader();
 // Referencias a elementos del DOM
 const categoriesList = document.querySelector<HTMLUListElement>("#categories__list");
 const conteinerProducts = document.querySelector<HTMLElement>("#conteiner__products");
+const searchInput = document.querySelector<HTMLInputElement>("#search__input");
+const cartCount = document.querySelector<HTMLSpanElement>(".cart__count");
 
 // Fragmento para optimizar la inserción de productos
 const fragmentCategories = document.createDocumentFragment();
 const fragmentProducts = document.createDocumentFragment();
-const searchInput = document.querySelector<HTMLInputElement>("#search__input");
-
 
 // Obtener categorías
 const categories = getCategories();
@@ -107,6 +108,21 @@ categoriesList?.addEventListener("click", (e) => {
     } else {
       const categotyProducts = filteredProducts(categoryName);
       showProducts(categotyProducts);
+    }
+  }
+});
+
+// Agregar al carrito
+conteinerProducts?.addEventListener("click", (e) => {
+  const target = e.target as HTMLElement;
+  if (target.classList.contains("add-to-cart")) {
+    const productCard = target.closest(".product__card");
+    const productId = productCard?.getAttribute("data-id");
+    if (productId) {
+      addToCart(parseInt(productId));
+    }
+    if (cartCount) {
+      cartCount.textContent = totalItemsCart().toString();
     }
   }
 });

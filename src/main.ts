@@ -1,3 +1,5 @@
+import { totalItemsCart } from "./utils/cart";
+
 export const renderHeader = () => {
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
   console.log("Current page:", currentPage);
@@ -15,3 +17,11 @@ export const renderHeader = () => {
   `;
   document.body.insertAdjacentHTML("afterbegin", headerHTML);
 };
+
+export const updateCartCount = () => {
+  const total = totalItemsCart();
+  const cartCountElement = document.querySelector(".cart__count");
+  if (cartCountElement) {
+    cartCountElement.textContent = total.toString();
+  }
+}
