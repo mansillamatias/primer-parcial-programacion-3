@@ -1,6 +1,7 @@
 // src/utils/data.ts
 import type { Product } from "../types/Product";
 import type { ICategory } from "../types/ICategory";
+import pizza from "../assets/images/pizza.webp";
 
 
 const categorias: ICategory[] = [
@@ -57,7 +58,7 @@ export const PRODUCTS: Product[] = [
     precio: 4500.0,
     descripcion: "Pizza clásica con salsa de tomate y muzzarella derretida",
     stock: 20,
-    imagen: "pizza.jpg",
+    imagen: pizza,
     disponible: true,
     categorias: [categorias[0]],
   },
