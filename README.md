@@ -1,10 +1,42 @@
-# Proyecto: Protección de Rutas (Educativo)
+# Evaluación 1 - Programación III
+**Tecnicatura Universitaria en Programación - UTN (A Distancia)**
 
 ## ✍️ Descripción
 
-Este es un proyecto de demostración creado con fines educativos para ilustrar un mecanismo básico de protección de rutas en el lado del cliente (frontend) utilizando **Vite** y **TypeScript**.
+El objetivo de esta evaluación es consolidar los conocimientos adquiridos en las 
+primeras unidades del cursado (HTML, CSS, JavaScript y TypeScript), mediante la 
+evolución del proyecto Food Store hacia una aplicación frontend más dinámica e 
+interactiva. 
 
-El objetivo es mostrar cómo se puede restringir el acceso a ciertas páginas según el rol de un usuario (por ejemplo, `ADMIN` o `CLIENT`).
+Este proyecto consiste en la evolución de la aplicación **Food Store** hacia una plataforma dinámica e interactiva utilizando **Vite** y **TypeScript**. Se implementó un catálogo de productos con funcionalidades de búsqueda y filtrado, además de un sistema de carrito de compras con persistencia local.
+
+---
+
+## 🚀 Funcionalidades Implementadas
+Basado en los requerimientos obligatorios y las Historias de Usuario (HU):
+
+- **Catálogo de Productos:** Renderizado dinámico desde un origen de datos.
+- **Búsqueda y Filtrado (HU-P1-01/02):** Buscador por nombre y filtros por categoría desde el menú lateral.
+- **Carrito con Persistencia (HU-P1-03):** Gestión de productos agregados mediante `localStorage` para evitar pérdida de datos al recargar.
+- **Visualización y Totales (HU-P1-04/05):** Vista detallada del carrito con nombre, precio, cantidad y cálculo automático del total general.
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+El desarrollo se realizó exclusivamente con tecnologías nativas según la consigna
+- **HTML5** y **CSS3** 
+- **JavaScript** y **TypeScript** 
+- **Vite** como herramienta de construcción 
+- **pnpm** como gestor de paquetes recomendado
+
+---
+
+## 📂 Estructura del Proyecto
+Se respetó la organización de carpetas solicitada:
+- `src/pages/store/home/`: Lógica y vista del catálogo.
+- `src/pages/store/cart/`: Lógica y vista del carrito.
+- `src/types/`: Definición de interfaces (`Product`, `CartItem`, `Icategoria`).
+- `src/data/`: Origen de datos y categorías.
 
 ---
 
@@ -48,36 +80,3 @@ pnpm dev
 ```
 
 La aplicación estará disponible en la URL que aparezca en la terminal (generalmente `http://localhost:5173`).
-
----
-
-## ⚙️ ¿Cómo Funciona la Protección de Rutas?
-
-El mecanismo es simple y se gestiona desde el código TypeScript en la carpeta `src/utils`:
-
-1.  **Inicio de Sesión**: Cuando un usuario se "loguea", su información (incluido su rol) se guarda como un string JSON en `localStorage`.
-2.  **Carga de Página Protegida**: Cada vez que se intenta cargar una página protegida (ej. la página de Administrador), se ejecuta un script de verificación (`checkAuhtUser` en `src/utils/auth.ts`).
-3.  **Verificación**: El script comprueba:
-    - Si existe un usuario en `localStorage`. Si no, redirige al login.
-    - Si el rol del usuario guardado coincide con el rol requerido para acceder a esa página. Si no coincide, lo redirige a una página de acceso denegado o a su "home" correspondiente.
-4.  **Cierre de Sesión (Logout)**: Al cerrar sesión, la información del usuario se elimina de `localStorage`.
-
----
-
-## 📁 Estructura del Proyecto
-
-```
-/
-├── src/
-│   ├── pages/                # Contiene las páginas de la aplicación
-│   │   ├── admin/            # Páginas solo para administradores
-│   │   ├── auth/             # Páginas de autenticación (login, registro)
-│   │   └── client/           # Páginas solo para clientes
-│   ├── types/                # Define las interfaces y tipos (IUser, Rol)
-│   └── utils/                # Lógica reutilizable
-│       ├── auth.ts           # Función principal de verificación de rol y sesión
-│       ├── localStorage.ts   # Funciones para leer/escribir en localStorage
-│       └── navigate.ts       # Función para redirigir al usuario
-├── package.json              # Dependencias y scripts
-└── README.md                 # Este archivo
-```
