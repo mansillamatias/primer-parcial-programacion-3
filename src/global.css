@@ -60,6 +60,7 @@ body {
 .nav__button {
   color: var(--white-color);
   font-size: 16px;
+  line-height: 1;
   cursor: pointer;
   padding-bottom: 4px;
 }
@@ -74,17 +75,35 @@ body {
   color: var(--white-color);
 }
 
-.nav__button__cart {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 .cart__count {
+  display: inline-flex;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
   background-color: var(--secondary-color);
   color: var(--white-color);
   font-size: 10px;
-  padding: 2px 6px;
-  margin-left: 4px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
+  margin-left: 4px;
+  transition: transform 0.2s ease;
+}
+
+.badge-bounce {
+  animation: badge-pop 0.4s ease-out;
+}
+
+@keyframes badge-pop {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.4);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }

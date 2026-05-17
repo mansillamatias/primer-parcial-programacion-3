@@ -1,7 +1,7 @@
 import { getCategories, PRODUCTS } from "../../../data/data";
 import type { ICategory } from "../../../types/ICategory";
 import type { Product } from "../../../types/Product";
-import { renderHeader, updateCartCount } from "../../../main";
+import { animationCartCount, renderHeader, updateCartCount } from "../../../main";
 import { addToCart, totalItemsCart } from "../../../utils/cart";
 
 // Renderizado del header
@@ -124,6 +124,8 @@ conteinerProducts?.addEventListener("click", (e) => {
     }
     if (cartCount) {
       cartCount.textContent = totalItemsCart().toString();
+      // Animación de conteo del carrito
+      animationCartCount(cartCount);
     }
   }
 });

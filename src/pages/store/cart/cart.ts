@@ -1,4 +1,4 @@
-import { renderHeader, updateCartCount } from "../../../main";
+import { animationCartCount, renderHeader, updateCartCount } from "../../../main";
 import type { ItemCart } from "../../../types/ItemCart";
 import { getCart, removeCart, saveCart } from "../../../utils/cart";
 
@@ -10,6 +10,7 @@ updateCartCount();
 const cartContainer = document.querySelector<HTMLElement>(".cart_container");
 const cartItems = document.querySelector<HTMLElement>(".cart__items");
 const cartSummary = document.querySelector<HTMLElement>(".cart__summary");
+const cartCount = document.querySelector<HTMLSpanElement>(".cart__count");
 
 // Crear una tarjeta de producto en el carrito
 const createCard = (item: ItemCart): HTMLElement => {
@@ -134,6 +135,8 @@ cartContainer?.addEventListener("click", (event) => {
     const action = target.getAttribute("data-action");
     if (action === "decrease") changeQuantity(productId, -1);
     if (action === "increase") changeQuantity(productId, 1);
+
+    animationCartCount(cartCount);
   }
 
   if (target.classList.contains("remove-item-button")) {
@@ -141,6 +144,7 @@ cartContainer?.addEventListener("click", (event) => {
     saveCart(cart);
     updateResumeCard();
     updateCartCount();
+    animationCartCount(cartCount);
 
   }
 });
@@ -152,6 +156,10 @@ cartSummary?.addEventListener("click", (event) => {
     removeCart();
     updateResumeCard();
     updateCartCount();
+
+    // Animación de conteo del carrito
+    animationCartCount(cartCount);
   }
 }
 );
+

@@ -25,3 +25,11 @@ export const updateCartCount = () => {
     cartCountElement.textContent = total.toString();
   }
 }
+
+export const animationCartCount = (cartCount: HTMLElement | null) => {
+  if (cartCount) {
+    cartCount.classList.remove("badge-bounce");
+    void cartCount.offsetWidth;
+    cartCount.classList.add("badge-bounce");
+  }
+}
