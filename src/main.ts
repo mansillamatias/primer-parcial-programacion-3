@@ -4,7 +4,7 @@ export const renderHeader = () => {
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
   console.log("Current page:", currentPage);
   const headerHTML = `
-  <header>
+  <header class="header">
     <h1 class="logo">🛒Food Store</h1>
     <nav>
       <ul class="nav__list">
