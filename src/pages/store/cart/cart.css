@@ -26,12 +26,12 @@
   border: 1px solid #ddd;
 }
 
-.cart__item__image {
-  border: 1px solid purple;
-  width: 80px;
-  height: 80px;
+.cart__item__image img {
+  width: 100px;
+  height: 100px;
   object-fit: cover;
-  padding: 10px;
+  padding: 4px;
+  border-radius: 12px;
 }
 
 .cart__item__details {

@@ -140,16 +140,18 @@ cartContainer?.addEventListener("click", (event) => {
     const cart: ItemCart[] = getCart().filter((item) => item.id !== productId);
     saveCart(cart);
     updateResumeCard();
+    updateCartCount();
+
   }
 });
 
 cartSummary?.addEventListener("click", (event) => {
   const target = event.target as HTMLElement;
 
-  // ESta de mas
   if (target.classList.contains("clear-cart-button")) {
     removeCart();
     updateResumeCard();
+    updateCartCount();
   }
 }
 );
