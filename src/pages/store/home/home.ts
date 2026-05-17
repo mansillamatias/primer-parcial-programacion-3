@@ -36,9 +36,9 @@ const createProductCard = (product: Product): HTMLElement => {
   article.innerHTML = `
       <header class="product__header">
         <img src="${product.imagen}" alt="${product.nombre}">
+        <h4>${product.categorias.map((cat) => cat.nombre).join(", ")}</h4>
       </header>
       <main class="product__main">
-        <h4>${product.categorias.map((cat) => cat.nombre).join(", ")}</h4>
         <h3>${product.nombre}</h3>
         <p>${product.descripcion}</p>
       </main>
