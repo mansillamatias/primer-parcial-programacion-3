@@ -110,4 +110,10 @@ main input {
   cursor: pointer;
   border: none;
   border-radius: 4px;
+  transition: transform 0.4s ease;
+}
+
+.add-to-cart:active {
+  background-color: var(--secondary-color);
+  transform: scale(1.5);
 }

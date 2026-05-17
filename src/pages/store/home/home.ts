@@ -1,11 +1,12 @@
 import { getCategories, PRODUCTS } from "../../../data/data";
 import type { ICategory } from "../../../types/ICategory";
 import type { Product } from "../../../types/Product";
-import { renderHeader } from "../../../main";
+import { renderHeader, updateCartCount } from "../../../main";
 import { addToCart, totalItemsCart } from "../../../utils/cart";
 
 // Renderizado del header
 renderHeader();
+updateCartCount();
 
 // Referencias a elementos del DOM
 const categoriesList = document.querySelector<HTMLUListElement>("#categories__list");
