@@ -12,6 +12,9 @@ Este proyecto consiste en la evolución de la aplicación **Food Store** hacia u
 
 ---
 
+## Enlace del Video
+https://youtu.be/k3a4rnSQ0qc
+
 ## 🚀 Funcionalidades Implementadas
 Basado en los requerimientos obligatorios y las Historias de Usuario (HU):
 

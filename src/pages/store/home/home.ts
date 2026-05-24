@@ -116,6 +116,7 @@ categoriesList?.addEventListener("click", (e) => {
 // Agregar al carrito
 conteinerProducts?.addEventListener("click", (e) => {
   const target = e.target as HTMLElement;
+  console.log("Elemento clickeado:", target);
   if (target.classList.contains("add-to-cart")) {
     const productCard = target.closest(".product__card");
     const productId = productCard?.getAttribute("data-id");
